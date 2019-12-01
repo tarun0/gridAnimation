@@ -27,12 +27,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        initAdapter();
+        initAdapter(false);
     }
 
-    private void initAdapter() {
+    private void initAdapter(boolean force) {
 
-        if (gridView == null) {
+        if (gridView == null || force) {
             gridView = findViewById(R.id.grid);
         }
 
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (hasMovedFromMainActivity) {
-            recreate();
+            initAdapter(true);
         }
     }
 
